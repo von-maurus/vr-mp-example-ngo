@@ -2,10 +2,13 @@ using System.Threading.Tasks;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using UnityEngine;
+using System.Text.RegularExpressions;
+
 
 #if UNITY_EDITOR
 
 // Unity 6 Only
+
 #if HAS_MPPM
 using Unity.Multiplayer.Playmode;
 using UnityEngine.XR.Interaction.Toolkit.UI;
@@ -33,6 +36,15 @@ namespace XRMultiplayer
         /// </summary>
         [SerializeField] bool m_UseCommandLineArgs = true;
 
+        private string SanitizeProfileName(string profileName)
+        {
+            // Keep only allowed chars: A-Z, a-z, 0-9, -, _
+            string clean = Regex.Replace(profileName, @"[^A-Za-z0-9\-_]", "");
+            // Trim length if needed
+            if (clean.Length > 30) clean = clean[..30];
+            // Provide a fallback in case it's empty
+            return string.IsNullOrEmpty(clean) ? "default_profile" : clean;
+        }
 
         /// <summary>
         /// Simple Authentication function. This uses bare bones authentication and anonymous sign in.
@@ -64,7 +76,7 @@ namespace XRMultiplayer
                     playerId += GetPlayerIDArg();
                 }
 
-                options.SetProfile(playerId);
+                options.SetProfile(SanitizeProfileName(playerId));
                 Utils.Log($"{k_DebugPrepend}Signing in with profile {playerId}");
 
                 // Initialize UGS using any options defined
@@ -121,7 +133,7 @@ namespace XRMultiplayer
         {
             Utils.Log($"{k_DebugPrepend}MPPM Found");
             string mppmString = "";
-            if(CurrentPlayer.ReadOnlyTags().Length > 0)
+            if (CurrentPlayer.ReadOnlyTags().Length > 0)
             {
                 mppmString += CurrentPlayer.ReadOnlyTags()[0];
 

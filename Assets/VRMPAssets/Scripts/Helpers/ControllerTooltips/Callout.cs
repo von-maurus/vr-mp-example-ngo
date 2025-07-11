@@ -82,9 +82,11 @@ namespace Unity.VRTemplate
                 DisableCallout();
                 return;
             }
-
-            m_Gazing = false;
-            m_EndCo = StartCoroutine(EndDelay());
+            if (gameObject.activeInHierarchy)
+            {
+                m_Gazing = false;
+                m_EndCo = StartCoroutine(EndDelay());
+            }
         }
 
         IEnumerator StartDelay()

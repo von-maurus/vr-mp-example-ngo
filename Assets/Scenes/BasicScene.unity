@@ -3032,6 +3032,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4861196811161718231, guid: 8edf1e2f1e0f31c4fbb22ab6f39410ff,
+        type: 3}
+      propertyPath: m_UseSelectEvents
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5160031141042685670, guid: 8edf1e2f1e0f31c4fbb22ab6f39410ff,
         type: 3}
       propertyPath: GlobalObjectIdHash
@@ -3050,7 +3055,7 @@ PrefabInstance:
     - target: {fileID: 5253157297673775917, guid: 8edf1e2f1e0f31c4fbb22ab6f39410ff,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8275397685822493948, guid: 8edf1e2f1e0f31c4fbb22ab6f39410ff,
         type: 3}
@@ -4227,7 +4232,7 @@ PrefabInstance:
     - target: {fileID: 2613880095383542483, guid: 3967f87296c892e40b57e37bc8601550,
         type: 3}
       propertyPath: ConnectionData.ServerListenAddress
-      value: 0.0.0.0
+      value: 127.0.0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4145292139985048678, guid: 3967f87296c892e40b57e37bc8601550,
         type: 3}
